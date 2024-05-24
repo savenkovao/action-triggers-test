@@ -4,12 +4,18 @@
   /* INSERT QUALTRICS IFRAME */
   var section = document.getElementsByTagName('section')[0];
   var iframe = document.createElement('iframe');
+  var container = document.createElement('div');
+  var h2 = document.createElement('h2');
+  h2.innerHTML = 'QUALTRICS injected';
+
+
   iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290');
   iframe.setAttribute('width', '600px');
   iframe.setAttribute('height', '800px');
 
-  section.appendChild(iframe);
-
+  container.appendChild(h2);
+  container.appendChild(iframe);
+  section.appendChild(container);
   console.log('QUALTRICS injected')
   /* INSERT QUALTRICS IFRAME */
 
@@ -22,8 +28,8 @@
   var headerLogoMobile = document.querySelectorAll('.header-logo-mobile')[0];
   var logoBlock = document.querySelectorAll('.logo-block')[0];
   var mainCounter = 0;
-  var burgerMenuWhiteIcon = "mobile-menu-white_icon";
-  var logoWhiteIcon = "logo-block-white_icon";
+  var burgerMenuWhiteIcon = 'mobile-menu-white_icon';
+  var logoWhiteIcon = 'logo-block-white_icon';
   var mobileMenuBackground;
   var networksLink = document.querySelectorAll('.networks-link')[0];
   var header = document.getElementsByTagName('header')[0];
@@ -32,46 +38,44 @@
   var goUpButton = document.querySelectorAll('.btn_go_up')[0];
 
 
-
-
   setFooterText();
 
-  createBlockMenuBackground ();
+  createBlockMenuBackground();
 
   setCurrentScreenWidth();
 
-  setNewClasses ();
+  setNewClasses();
 
 
   // Ф-ция-событие включения-выключения (выдвигания-задвигания)
   // мобильного меню
 
-  mobileMenuButton.onclick = function() {
+  mobileMenuButton.onclick = function () {
     mainCounter++;
 
-    if (mainCounter%2 == 0){  
-      hideMobileMenu();    
-    } else { 
-      showMobileMenu();  
+    if (mainCounter % 2 == 0) {
+      hideMobileMenu();
+    } else {
+      showMobileMenu();
     }
 
   }
 
-  window.addEventListener("resize", resizeFunction);
+  window.addEventListener('resize', resizeFunction);
 
 
-  window.onscroll = function() {
+  window.onscroll = function () {
     setCurrentScreenWidth();
 
     if (currentScreenWidth > 768) {
-      var scrolled = window.pageYOffset; 
+      var scrolled = window.pageYOffset;
 
-      if (scrolled >= 50) {      
+      if (scrolled >= 50) {
         narrowHeaderMenu();
       } else {
         extendHeaderMenu();
       }
-    }  
+    }
   }
 
 
@@ -79,11 +83,11 @@
 
   function setFooterText() {
     var date = new Date();
-    if(currentScreenWidth > 768){
-    networksLink.innerHTML = "© 2000 – "+date.getFullYear()+" \"Профком студентов ОГАСА\"";
+    if (currentScreenWidth > 768) {
+      networksLink.innerHTML = '© 2000 – ' + date.getFullYear() + ' "Профком студентов ОГАСА"';
     } else {
-    networksLink.innerHTML = "© 2000 – "+date.getFullYear()+" \"ППОС ОГАСА\"";
-    } 
+      networksLink.innerHTML = '© 2000 – ' + date.getFullYear() + ' "ППОС ОГАСА"';
+    }
   }
 
 
@@ -91,34 +95,34 @@
 
   function createBlockMenuBackground() {
     mobileMenuBackground = document.createElement('div');
-    mobileMenuBackground.classList.add("mobile-menu-background");
+    mobileMenuBackground.classList.add('mobile-menu-background');
     headerLogoMobile.appendChild(mobileMenuBackground);
   }
 
 
   // Ф-ция для установления текущей и предыдущей ширины экрана
 
-  function setCurrentScreenWidth(){
+  function setCurrentScreenWidth() {
     previousScreenWidth = currentScreenWidth;
-    currentScreenWidth = document.documentElement.clientWidth;    
+    currentScreenWidth = document.documentElement.clientWidth;
   }
 
 
   // Функция, присваивающая новые классы для корректного отображения
   // мобильного меню (Без скрипта меню выглядит иначе)
 
-  function setNewClasses() { 
-    if(currentScreenWidth<=768){
-    mobileMenuBackground.classList.add('mobile-menu-background-hidden');
-    headerMenuMobile.classList.add("header-menu-mobile-hidden");
-    mobileMenuButton.classList.add('mobile-menu-enabled');
-    } 
+  function setNewClasses() {
+    if (currentScreenWidth <= 768) {
+      mobileMenuBackground.classList.add('mobile-menu-background-hidden');
+      headerMenuMobile.classList.add('header-menu-mobile-hidden');
+      mobileMenuButton.classList.add('mobile-menu-enabled');
+    }
   }
 
 
   // Ф-ция отображения мобильного меню
 
-  function showMobileMenu() {  
+  function showMobileMenu() {
     headerLogoMobile.classList.add('header-logo-mobile-transp');
     headerMenuMobile.classList.add('header-menu-mobile-visible');
     mobileMenuBackground.classList.remove('mobile-menu-background-hidden');
@@ -134,7 +138,7 @@
     headerLogoMobile.classList.remove('header-logo-mobile-transp');
     headerMenuMobile.classList.remove('header-menu-mobile-visible');
     mobileMenuBackground.classList.add('mobile-menu-background-hidden');
-    mobileMenuButton.classList.remove(burgerMenuWhiteIcon);  
+    mobileMenuButton.classList.remove(burgerMenuWhiteIcon);
     logoBlock.classList.remove(logoWhiteIcon);
     // document.body.style.overflow = ""; // вкл прокрутки экрана
   }
@@ -143,21 +147,21 @@
   // Ф-ция включения мобильного меню
 
   function enableDropMenu() {
-   hideMobileMenu(); 
+    hideMobileMenu();
   }
 
 
   //Ф-ция для изменения внешнего вида меню при изменении
   // ширины экрана 
 
-  function resizeFunction (){
+  function resizeFunction() {
     setCurrentScreenWidth();
     mainCounter = 0;
-    setFooterText ();
+    setFooterText();
 
     // headerMenuMobile.style.transition = "none";
 
-    if(previousScreenWidth <= 768) {
+    if (previousScreenWidth <= 768) {
 
       if (currentScreenWidth <= 768) {
 
@@ -174,10 +178,10 @@
 
     } else {
 
-      if (currentScreenWidth <= 768){
+      if (currentScreenWidth <= 768) {
 
         // из десктоп в мобильный
-        setNewClasses ();
+        setNewClasses();
         // extendHeaderMenu();
 
       } else {
@@ -189,7 +193,7 @@
 
   // Ф-ция сужения десктопного меню
 
-  function narrowHeaderMenu() {  
+  function narrowHeaderMenu() {
     logoBlock.classList.add('logo-block-min');
     header.classList.add('header-min');
     headerMenu.classList.add('header-menu-min');
@@ -207,7 +211,6 @@
   }
 
 }());
-
 
 
 // window.scrollBy({ top: 100, behavior: 'smooth' });
