@@ -16,7 +16,7 @@
   container.appendChild(h2);
   container.appendChild(iframe);
   section.appendChild(container);
-  console.log('QUALTRICS injected - Пuardians test Qualtrics form')
+  console.log('QUALTRICS injected - Guardians test Qualtrics form')
   /* INSERT QUALTRICS IFRAME */
 
 
