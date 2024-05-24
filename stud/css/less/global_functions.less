@@ -1,0 +1,51 @@
+.setBackgroundImage(@url, @backGround:transparent){
+	background-image: url(@url);
+	background-repeat: no-repeat;
+ 	background-position: center;
+ 	background-size: cover;
+ 	background-color: @backGround;
+}
+
+.setBackgroundWImg(){
+	background-repeat: no-repeat;
+ 	background-position: center;
+ 	background-size: cover;
+ 	background-color: transparent;
+}
+
+.setBorder(@weight, @color, @radius){
+	border: @weight solid @color;
+	border-radius: @radius; 
+}
+
+.top(@parent, @operator:"-", @child){
+	top: @parent;
+	top: ~"calc(@{parent}"~"@{operator}"~"@{child})";
+}
+.bottom(@parent, @operator:"-", @child){
+	bottom: @parent;
+	bottom: ~"calc(@{parent}"~"@{operator}"~"@{child})";
+}
+
+.left(@parent, @operator:"-", @child){
+	left: @parent;
+	left: ~"calc(@{parent}"~"@{operator}"~"@{child})";
+}
+
+.right(@parent, @operator:"-", @child){
+	right: @parent;
+	right: ~"calc(@{parent}"~"@{operator}"~"@{child})";
+}
+
+.height(@parent, @operator:"-", @child){
+	height: @parent;
+	height: ~"calc(@{parent}"~"@{operator}"~"@{child})";
+}
+
+.transition(@target, @time, @type:linear){
+	transition: @target @time @type;
+}
+
+
+//media queries
+

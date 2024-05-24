@@ -1,0 +1,275 @@
+
+header {
+	height: 70px;
+	transition: height 0.2s linear;
+
+	.fixed-header{
+		position: fixed;
+		width: 100%;
+		// max-width: @wrapperWidth;
+		background-color: @logoMobileClr;
+		z-index: 4;
+
+		@media @mobile {
+			position: relative;
+			width: 100%;
+			max-width: auto;
+			background-color: inherit;
+		}
+
+	}
+
+	.header-logo{
+		height: 50px;
+		text-align: center;
+	}
+
+	.logo-block{
+		height: 60px;
+		width: 90px;
+		margin: 5px auto;	
+		.setBackgroundImage(@mainLogo);
+		background-position: top;
+		transition: height, width 0.2s linear;
+
+		@media @mobile{
+			margin: 0 auto;
+		}
+	}
+
+	.logo-block-white_icon {
+		background-position: bottom;
+	}
+
+	.header-menu {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+		text-align: center;
+		height: 70px;
+		padding: @blankPadding;
+		margin: @blankMargin;
+		font-size: 1.5rem;
+		user-select: none;
+		transition: height 0.2s linear;
+		
+		.menu-item{
+			display: inline-block; //for old browsers
+			width: 16.6%;	
+			list-style-type: none;
+			z-index: 10;
+			position: relative;
+			padding:5px;
+			.setBorder(1.8px, transparent, 0.5em);
+			transition: background-color, border-color 0.2s linear;			
+			color: @menuLinkColor;
+			cursor: pointer;
+			text-overflow: clip;
+
+			
+
+			&:hover{
+				box-shadow: 2px 2px 4px 2px rgba(0,0,0,0.1);
+				
+				@media @mobile {
+					box-shadow: none;
+				}
+				.submenu{
+					display: inline-block;
+					width: 150%;
+				}
+			}
+
+			.menu-item-link {
+				font-weight: bold;
+				color: @menuLinkColor;
+				&:active,
+				&:focus,
+				&:hover{
+					text-decoration:none;
+					color: @menuLinkHover;
+				}
+			}
+
+			.submenu{
+				display: none;
+				padding: 10px;
+				background-color: @subMenuBgclr;
+				position: absolute;
+				top:105%;
+				left: -25%;
+				.setBorder(0, transparent, 1rem);
+
+				.menu-item{
+					width: 100%;
+				}
+			}
+		}
+
+	}
+
+
+	@media @mobile{
+		.header-logo-mobile{
+			position: fixed;
+			width: 100%;
+			height: 60px;
+			top: 0;
+			margin: 0 auto;	
+			padding: 10px;
+			background-color: @logoMobileClr;
+			z-index: 11;
+
+			.logo-block{
+				height: 40px;
+				width: 60px;
+			}
+
+			.mobile-menu{
+				display: none;
+				position: absolute;
+				width: 40px;
+				height: 40px;
+				.setBackgroundImage(@brgMenuIcon);
+				background-position: top;
+				z-index: 13;
+			}
+
+			.mobile-menu-enabled {
+				display: block !important;
+			}
+
+
+
+			.mobile-menu-white_icon{
+				background-position: bottom;
+			}
+
+			.mobile-menu-background{
+				display: block;
+				position: fixed;
+				width: 80%;
+				height: 100%;
+				top:0;
+				left: 0;
+				background-color: @mobileMenuBgclr;
+				z-index: -1;
+				transition: left 0.15s linear;
+			}
+
+			.mobile-menu-background-hidden {
+				left: -80% !important;
+
+			}
+
+		}
+
+		.header-logo-mobile-transp {
+			background-color: transparent !important;
+			z-index: 13 !important;
+		}
+
+		.header-menu-mobile{
+			display: block;
+			position: relative;
+			width: 80%;
+			height: 100%;		
+			top: 0;
+			left: 0;	
+			margin: 70px 0 0;		
+			padding-bottom: 70px;
+			background-color: @hdrMenuMobileBgclr;
+			z-index: 10;
+			text-align: left;
+			overflow: auto;	
+			transition: left 0.15s linear;
+
+
+			.menu-item-mobile {
+				display: block;
+				width: auto;
+				padding: 10px 0 10px 20px;
+				border: 0;
+				border-radius: 0;
+				list-style-type: none;
+				text-overflow: clip;
+
+				&.expand{
+					padding-bottom: 0;
+				}
+
+				&:hover {
+					border-color: transparent;
+					width: auto;
+				}
+
+				.menu-item-link{
+					color: white;
+
+					&:hover{
+						color: rgb(89, 196, 96);
+					}
+				}
+
+				.submenu.submenu-mobile {
+					display: inline-block;
+					position: relative;
+					width: 100%;
+					top: 0;
+					left: 0;
+					padding: 0;
+					background-color: transparent;
+
+					&::before{
+						content: '';
+						position: absolute;
+						width: 90%;
+						height: 2px;
+						background-color: @subMenuMline;
+						top: 3px;
+						left: 10px;
+						z-index: 16;
+					}
+
+					.menu-item-link{
+						color: white;
+
+						&:hover{
+							color: #16ff75;
+						}
+					}
+				}
+			}
+		}
+
+		.header-menu-mobile-hidden {
+			position: fixed; 
+			left: -80%;			 
+		 	z-index: 15;
+		}
+
+		.header-menu-mobile-visible {
+			background-color: transparent;
+ 			left: 0 !important;
+		}
+
+
+	}
+
+}
+
+
+.header-min {
+	height: 50px !important;
+}
+.header-logo-min {
+	height: 40px !important;
+}
+.logo-block-min {
+	height: 40px !important;
+	width: 60px !important;
+}
+.header-menu-min {
+	height: 50px !important;
+}

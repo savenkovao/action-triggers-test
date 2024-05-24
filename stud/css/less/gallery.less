@@ -1,0 +1,222 @@
+//images gallery
+
+.content-gallery-block{
+	display: inline-block;
+	width: 19%;
+	margin: 10px 0.5%;
+	overflow: hidden;
+	transition: opacity 0.2s linear;	
+	
+	&:hover{
+		opacity: 0.95;
+	}
+
+	.content-image{
+		transition: transform 8.2s linear;
+
+		&:hover{			
+			transform: rotate(0deg) scale(1.2);
+
+			@media @mobile{
+				transform: none;
+			}
+		}		
+	}
+
+	.image_container-background{
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		.setBackgroundImage(@logoOGASA);
+		transition: transform 8.2s linear;
+
+		&:hover{
+			transform: rotate(0deg) scale(1.2);
+			
+			@media @mobile{
+				transform: none;
+			}
+		}		
+	}
+
+
+	@media @mobile{
+		width: 100%;
+		height: auto;
+
+		.content-header-photo{
+			order: -1;
+		}
+	}
+}
+
+.content-image{
+	width: 100%;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.team-gallery-head{
+	width: 32%;
+
+	@media @mobile{
+		width: 100%;
+		height: auto;
+	}
+}
+
+
+
+//section gallery
+
+.content-gallery{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	text-align: center;
+
+	.content-section-wrapper{
+		display: inline-block;
+		position: relative;
+		margin: 1%;
+		width: 31%;
+		min-width: 200px;
+		overflow: hidden;
+
+		&:hover .content-section-link .content-section-title{			
+			background-color: @sectTitleColor;
+			.content-section-name,
+			.content-section-date{
+				color: @sectFontColor;
+			}
+		}
+
+		&:hover .content-section-container{
+			transform: scale(1.3);
+		}
+
+		.content-section-link{
+			cursor: pointer;
+			
+			.content-section-container{
+				position: relative;
+				height: 25rem;
+				transition:transform 8.2s linear ;				
+				.setBackgroundImage(@sct-plchldr);		
+
+				&.video-play_icon{
+					transform: scale(1);
+				}		
+			}
+
+			.content-section-title{
+				display: block;					
+				position: absolute;
+				width: 100%;
+				bottom: 2%;
+				padding: 5px 10px;
+				background-color: transparent;
+				transition: background 0.25s linear;
+				text-align: left;			
+
+
+				.content-section-name{
+					color: transparent;
+					font-weight: bold;
+					font-size: 1.6rem;
+					transition: color 0.25s linear;	
+				}
+
+				.content-section-date{
+					transition: color 0.25s linear;	
+					color: transparent;
+				}
+
+				@media @mobile{
+					background-color: @sectTitleColor;
+
+					.content-section-name,
+					.content-section-date{
+						color: @sectFontColor;
+					}
+				}
+			}
+
+			&:hover{
+				text-decoration: none;
+			}
+		}
+
+		&:hover .video-play_icon::before{
+			transform: scale(1.15);		
+		}
+
+		@media @mobile{
+			width: 100%;
+			max-width: 330px;
+		}	
+	}
+
+	.sngl-video{
+		width: 430px;
+	}
+}
+
+
+.video-play_icon{
+	position: relative;		
+}
+
+.video-play_icon::before{
+	display: block;
+	content: '';
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	.top(50%,"-",15px);
+	.left(50%,"-",15px);
+	.setBackgroundImage(@playIcon);
+	transition: transform 0.2s linear;
+}
+
+.content-section-download{
+	display: block;
+	position: relative;
+
+	&:hover::after{
+		content: '';
+		width: 20px;
+		height: 20px;
+		position: absolute;
+		margin-left: 5px;
+		.setBackgroundImage(@dwnld-icn);
+	}
+	.docx&:hover::after{
+		background-image: url(@docx-icn);
+	}
+	.pdf&:hover::after{
+		background-image: url(@pdf-icn);
+	}
+	
+
+	@media @mobile{
+		&::after{
+			content: '';
+			width: 20px;
+			height: 20px;
+			position: absolute;
+			margin-left: 5px;
+			.setBackgroundImage(@dwnld-icn);
+		}
+
+		.docx&::after{
+			background-image: url(@docx-icn);
+		}
+		.pdf&::after{
+			background-image: url(@pdf-icn);
+		}
+	}
+}
+
+

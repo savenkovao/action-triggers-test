@@ -1,0 +1,57 @@
+.tab_block{
+	position: relative;
+	width: 100%;
+	height: auto;
+	padding: 15px;
+	
+	.tab{
+		margin: 10px 0;
+		padding: 2.5px 0;
+		transition: font-weight 0.1s linear;
+
+		&:hover{
+			font-weight: bold;
+		}
+	}
+
+	.tab-chosen{
+		position: relative;
+		margin-left: 1.7rem;
+		font-weight: bold;
+
+		&::before{
+			content:'';
+			position: absolute;
+			width: 1.5rem;
+			height: 1.5rem;
+			margin-left: -2.2rem;
+			.top(50%,"-",0.75rem);
+			.setBackgroundImage(@infoIcon);
+		}
+	}
+
+	.tab_block-information{
+		margin: 15px 0;
+		padding: 10px;
+		.setBorder(1.5px, rgba(0,0,0,0.3), 0);
+		.transition(display, 2s, linear);
+
+		.tab-image{
+			width: 50%;
+			float: right;
+			padding: 10px;
+
+			@media @mobile{
+				width: 100%;
+				float: none;
+			}
+		}
+	}
+}
+
+
+
+
+
+
+

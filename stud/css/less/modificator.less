@@ -1,0 +1,93 @@
+.bold{
+	font-weight: bold;
+}
+
+.clear-link,
+.clear-link:focus,
+.clear-link:active,
+.clear-link:visited,
+.clear-link:hover{
+	text-decoration: none;
+	color: @mainFontColor;
+	cursor: pointer;
+}
+
+.block_element{
+	display: block;
+}
+
+.block-center{
+	display: block;
+	margin:@marginCenter;
+}
+
+.content-center{
+	justify-content: center;
+}
+
+.text-align-left {
+	text-align: left;
+}
+
+.text-align-center {
+	text-align: center;
+}
+
+.width_4{
+	width: 40%;
+}
+
+.width_5{
+	width: 50%;
+}
+
+.width_7{
+	width: 70%;
+} 
+
+.disabled{
+	display: none !important;
+}
+
+.important_information{
+	color: red;
+	font-size: 1.7rem;
+}
+
+.full{
+	height: auto; /*full image size*/
+}
+
+.short{ 
+	height: 150px;
+	height: 13vw; /*short image size for gallaries*/
+	max-height: 160px; 
+	overflow: hidden;
+
+	@media @mobile{
+		height: 100%;
+		max-height: 100%; 
+	}
+}
+
+.text-decoration-disabled:hover{
+	text-decoration: none;
+}
+
+.link-hover:hover{
+	color: @menuLinkHover;
+}
+
+.no-transform{
+	transform: initial !important;
+
+	&:hover{
+		transform: initial !important;
+	}
+}
+
+
+
+
+
+

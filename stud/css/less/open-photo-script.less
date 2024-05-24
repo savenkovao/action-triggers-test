@@ -1,0 +1,180 @@
+.videoBlock,
+.photoBlock{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0%;
+	z-index: 20;
+}
+
+.photoBlock{
+	display: none;
+	.imageContainer{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		padding: 0 10%;
+		padding: 0 10vw;
+		display: flex;		
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		background-color: @bckgrPhoto;
+		z-index: 12;
+		
+		.btn_browse{
+			display: block;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			cursor: pointer;
+
+			.btn_arrow{
+				position: absolute;
+				width: 26px;
+				height: 54px;
+				.top(50%,"-",27px);
+				.setBackgroundImage(@slider-arrow);
+				background-position: top;
+				opacity: 0.3;
+				transition:opacity 0.3s linear;
+			}
+
+			&:hover .btn_arrow{
+				opacity: 1;
+			}
+		}
+
+		.btnLeft{
+			width: 30%;
+			left: 0;
+
+			.arrowLeft{
+				left: 0;
+				margin-left: 3rem;
+			}
+		}
+
+		.btnRight{
+			width: 70%;
+			left: 30%;
+
+			.arrowRight{
+				right: 0;
+				margin-right: 3rem;
+				background-position: bottom;
+			}
+		}
+
+		.btnClose{
+			position:absolute;
+			display:block;
+			right:0;
+			top:0;
+			width:65px;
+			height:65px;
+			z-index: 20;
+			cursor: pointer;
+
+			.closePic{	
+				position: absolute;
+				width: 25px;
+				height: 25px;
+				.right(50%,"-",12.5px);
+				.top(50%,"-",12.5px);
+				.setBackgroundImage(@closeIcon);
+				opacity: 0.3;
+				transition:opacity 0.2s linear;
+				transition: transform 0.1s linear;
+				
+				
+				
+			}			
+
+			&:hover .closePic{
+				opacity: 1;
+				transform: rotate(90deg);
+			}
+		}
+
+		.photoNumber{
+			position: absolute;
+			bottom: 0;
+			.left(50%,"-",20px);
+			margin: 0 auto 20px;
+			padding: 5px;
+			background-color: @photoNmbBgrColor;
+			color: @contNamecolor;
+			font-size: 1.7rem;
+			.setBorder(0, transparent,5px);			
+		}
+
+		.currentPhoto{
+			padding: 0;
+			.setBorder(3px, @photoNmbBgrColor,5px);	
+		}
+
+		.wide-image{
+			width: 100%;
+			height: auto;
+		}
+		.extended-image{
+			width: auto;
+			height: 97%;
+		}
+	}
+}
+
+.videoBlock{
+	.videoContainer{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		padding: 0 10%;
+		padding: 0 10vw;
+		background-color: @bckgrPhoto;
+		z-index: 12;
+
+		.video-responsive{
+			position: relative; 
+			height: 0; 
+			padding-bottom: 56.25%; 
+			overflow: hidden; 
+
+			iframe, 
+			object, 
+			embed {
+				position: absolute;
+			    left: 0;
+			    top: 0;
+			    width: 100%;
+			    height: 100%;
+			}
+		}
+	}
+
+	.btnClose{
+		position:absolute;
+		display:block;
+		right:0;
+		top:0;
+		width:130px;
+		height:130px;
+		z-index: 20;
+
+		.closePic{	
+			position: absolute;
+			width: 25px;
+			height: 25px;
+			.right(30%,"-",12.5px);
+			.top(30%,"-",12.5px);
+			.setBackgroundImage(@closeIcon);
+			opacity: 0.3;
+		}
+
+		&:hover .closePic{
+			opacity: 1;
+		}
+	}
+}
+
