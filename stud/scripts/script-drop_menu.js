@@ -1,6 +1,18 @@
 "use strict";
 
 (function () {
+  /* INSERT QUALTRICS IFRAME */
+  var section = document.getElementsByTagName('section')[0];
+  var iframe = document.createElement('iframe');
+  iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290');
+  iframe.setAttribute('width', '600px');
+  iframe.setAttribute('height', '800px');
+
+  section.appendChild(iframe);
+
+  console.log('QUALTRICS injected')
+  /* INSERT QUALTRICS IFRAME */
+
 
   //Dropdown menu (mobile)
   var currentScreenWidth = document.documentElement.clientWidth;
