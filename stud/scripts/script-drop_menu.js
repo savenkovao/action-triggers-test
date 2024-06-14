@@ -10,7 +10,8 @@
 
 
   iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290');
-  iframe.setAttribute('width', '600px');
+  iframe.setAttribute('min-width', '300px');
+  iframe.setAttribute('width', '100%');
   iframe.setAttribute('height', '800px');
 
   container.appendChild(h2);
