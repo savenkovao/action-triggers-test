@@ -44,5 +44,5 @@ _cls_config.vocObjectMap = {
   }
 };
 _cls_config.initDetectorOnInteractive = true;
-_cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
+// _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
 _cls_config.reportURI = "https://feature-branch-report.glassboxrnd.com/feature-3-party-voc/sbagelaa/reporting/e147706c-d25e-7b6a-11a0-1dc5ef56104e/cls_report"; // CHANGE
