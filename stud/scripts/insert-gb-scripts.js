@@ -3,7 +3,7 @@
 (function () {
   /* INSERT DETECTOR, CONFIG, GLASSVOX */
   [
-    '../scripts/detector-config.js',
+    '/action-triggers-test/stud/scripts/detector-config.js',
     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',
     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/glassvox.min.js'
   ].forEach((src, i) => {
