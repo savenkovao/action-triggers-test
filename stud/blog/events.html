@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-    <script id="gbConfig" src="https://requestly.tech/api/mockv2/detector-config-nps-test.js?rq_uid=PYkrhoga4gY0gPbY40f6fqfsfzq2"></script>
-    <script src="https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js"></script>
-    <script src="https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/glassvox.min.js"></script>
+
+
+
 
 	<title>Мероприятия ППОС ОГАСА</title>
 
@@ -37,7 +37,7 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="../images/design/favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
-	
+
 </head>
 <body>
 
@@ -46,12 +46,12 @@
 			<div class="container-fluid wrapper">
 				<div class="row">
 					<div class="row">
-						
+
 						<div class="col-xs-12 col-sm-2 col-md-2 header-logo header-logo-mobile">
-						
+
 							<div class="mobile-menu"></div>
-							
-							<a href="../index.html">							
+
+							<a href="../index.html">
 								<div class="logo-block"></div>
 							</a>
 						</div>
@@ -64,18 +64,18 @@
 								<li class="menu-item menu-item-mobile"><a href="../news.html" class="menu-item-link"><div>Новости</div></a>
 
 								<li class="menu-item menu-item-mobile expand"><a class="menu-item-link"><div>Профком</div></a>
-									<ul class="submenu submenu-mobile">		
+									<ul class="submenu submenu-mobile">
 										<li class="menu-item menu-item-mobile"><a href="../profkom/team.html"  class="menu-item-link"><div >Команда</div></a></li>
-										<li class="menu-item menu-item-mobile"><a href="../profkom/become_a_member.html" class="menu-item-link"><div>Стать членом ППОС</div></a></li>										
+										<li class="menu-item menu-item-mobile"><a href="../profkom/become_a_member.html" class="menu-item-link"><div>Стать членом ППОС</div></a></li>
 									</ul>
 								</li>
-								
-								
+
+
 								<li class="menu-item menu-item-mobile expand"><a class="menu-item-link"><div>Блог</div></a>
 									<ul class="submenu submenu-mobile">
-										
+
 										<li class="menu-item menu-item-mobile"><a href="events.html"  class="menu-item-link"><div>Мероприятия</div></a></li>
-										
+
 										<li class="menu-item menu-item-mobile"><a href="travels.html"  class="menu-item-link"><div>Поездки</div></a></li>
 
 										<li class="menu-item menu-item-mobile"><a href="projects.html" class="menu-item-link"><div>Проекты</div></a></li>
@@ -83,24 +83,24 @@
 										<li class="menu-item menu-item-mobile"><a href="videos.html" class="menu-item-link"><div>Видео</div></a></li>
 									</ul>
 								</li>
-								
+
 								<li class="menu-item menu-item-mobile"><a href="../information.html" class="
 								menu-item-link"><div>Полезная информация</div></a></li>
-								
+
 								<li class="menu-item menu-item-mobile"><a href="../contacts.html" class="menu-item-link"><div>Контакты</div></a></li>
 							</ul>
 						</div>
-						
+
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</header>
 
 	<section id="head">
 		<div class="container-fluid wrapper" id="head">
-			<div class="row">	
-				<div class="col-xs-12">	
+			<div class="row">
+				<div class="col-xs-12">
 					<h2 class="content-description-subheader">Мероприятия Профкома студентов ОГАСА</h2>
 					<div class="content-gallery">
 <!-- Event posts -->
@@ -175,7 +175,7 @@
 								</div>
 							</a>
 						</div>
-						<div class="content-section-wrapper gallery_item">			
+						<div class="content-section-wrapper gallery_item">
 							<a href="events/betonomeshalka_2016.html" class="content-section-link">
 								<div class="content-section-container page-event-9">
 								</div>
@@ -339,16 +339,16 @@
 				</div>
 
 				<div class="col-xs-12">
-					<div class="row btn_more_container">		
+					<div class="row btn_more_container">
 					</div>
 				</div>
-				
+
 				<div id="btn_go_up-link">
 					<a class="btn_go_up-link" href="#head">
 						<div class="btn_go_up">
 						</div>
 					</a>
-				</div>			
+				</div>
 			</div>
 		</div>
 	</section>
@@ -364,7 +364,7 @@
 
 
 
-	<script src="../scripts/script-drop_menu.js?ver1.02"></script>
+	<script src="../scripts/insert-gb-scripts.js?ver1.02"></script>
 	<script src="../scripts/script-hide_gallery_items.js?ver1.01"></script>
 
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -374,14 +374,14 @@
 	<!-- scroll -->
 	<script>
 		$("#btn_go_up-link").on("click","a", function (event) {
-			
+
 			var id = $(this).attr('href');
-			
+
 			if ( id.match(/#\w/g) ){
 				event.preventDefault();
 				var top = $(id).offset().top;
 			}
-			
+
 			$('body,html').animate({scrollTop: top - 70}, 1000);
 		});
 	</script>
@@ -389,7 +389,7 @@
 
 
 
-	
-	
+
+
 </body>
 </html>

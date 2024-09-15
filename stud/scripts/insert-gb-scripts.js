@@ -1,6 +1,21 @@
 "use strict";
 
 (function () {
+  /* INSERT DETECTOR, CONFIG, GLASSVOX */
+  [
+    '../scripts/detector-config.js',
+    'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',
+    'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/glassvox.min.js'
+  ].forEach((src, i) => {
+    let script = document.createElement('script');
+    script.setAttribute('src', src);
+    i > 0 && script.setAttribute('async', '');
+    script.setAttribute('type', "text/javascript"  );
+    document.head.appendChild(script);
+  });
+
+  /* INSERT DETECTOR, CONFIG, GLASSVOX */
+
   /* INSERT QUALTRICS IFRAME */
   var section = document.getElementsByTagName('section')[0];
   var iframe = document.createElement('iframe');
@@ -153,7 +168,7 @@
 
 
   //Ф-ция для изменения внешнего вида меню при изменении
-  // ширины экрана 
+  // ширины экрана
 
   function resizeFunction() {
     setCurrentScreenWidth();
