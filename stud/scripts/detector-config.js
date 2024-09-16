@@ -47,4 +47,4 @@ _cls_config.initDetectorOnInteractive = true;
 _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
 // _cls_config.reportURI = "https://dev-7.0.0-report.glassboxrnd.com/f3lx7s0z/reporting/d09b7249-e8b5-76c8-c8f7-c906a663701b/cls_report"; // CHANGE
 // _cls_config.reportURI= "https://feature-branch-report.glassboxrnd.com/feature-designer-rearrange/nbiittfb/reporting/2a33ba45-60d2-1fae-0f16-f4416501d09c/cls_report";
-_cls_config.reportURI= "https://feature-branch-report.glassboxrnd.com/feature-designer-rearrange/nbiittfb/reporting/95012c4e-081d-f3e9-9891-b0c33aedbe79/cls_report";
+_cls_config.reportURI= "https://feature-branch-report.glassboxrnd.com/feature-designer-rearrange/twbt8mko/reporting/765aee78-b531-773e-aa41-8e2136720353/cls_report";
