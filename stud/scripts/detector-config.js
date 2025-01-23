@@ -45,5 +45,5 @@ _cls_config.vocObjectMap = {
 };
 _cls_config.initDetectorOnInteractive = true;
 _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
-_cls_config.reportURI = "https://feature-branch-report.glassboxrnd.com/feature-vos-qe/9ctunkav/reporting/d7d07313-bacb-7abe-4af1-5d84ff5c4c02/cls_report"; // CHANGE
+_cls_config.reportURI = "https://feature-branch-report.glassboxrnd.com/feature-vos-qe/9ctunkav/reporting/95e8b252-1aa1-27e2-08c6-a2925ecaa4db/cls_report"; // CHANGE
 // _cls_config.reportURI = "https://dev-7.0.0-report.glassboxrnd.com/f3lx7s0z/reporting/d09b7249-e8b5-76c8-c8f7-c906a663701b/cls_report"; // CHANGE
