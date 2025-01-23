@@ -4,7 +4,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
   } /* DO NOT CHANGE jjelson 19.03.24 !!!!!!!!!!!! */
   window._gbRid = '${e://Field/ResponseID}';
   window._gbSid = '${e://Field/SurveyID}';
-  /*_cls_config.vocObjectMap = {
+  _cls_config.vocObjectMap = {
       "qualtrics": {
           "nps": {
               "name": "nps",
@@ -40,7 +40,7 @@ Qualtrics.SurveyEngine.addOnload(function () {
               "type": "int"
           }
       }
-  };*/
+  };
   _cls_config.sessionIdByQueryParam = '_cls_s';
   _cls_config.clseByQueryParam = '_cls_e';
   _cls_config.iframeWaitForHandshake = true;
@@ -57,8 +57,6 @@ Qualtrics.SurveyEngine.addOnload(function () {
     window.history.replaceState(null, null, '?' + query);
   }
 
-  console.log(777777);
-  window.ololo = 7777;
   var script = document.createElement('script');
   script.setAttribute('id', '_cls_detector');
   script.setAttribute('type', 'text/javascript');

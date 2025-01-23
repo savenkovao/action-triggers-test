@@ -17,22 +17,24 @@
   /* INSERT DETECTOR, CONFIG, GLASSVOX */
 
   /* INSERT QUALTRICS IFRAME */
-  var section = document.getElementsByTagName('section')[0];
-  var iframe = document.createElement('iframe');
-  var container = document.createElement('div');
-  var h2 = document.createElement('h2');
-  h2.innerHTML = 'QUALTRICS injected';
+  if(localStorage.getItem('qualtrics_onload')) {
+    var section = document.getElementsByTagName('section')[0];
+    var iframe = document.createElement('iframe');
+    var container = document.createElement('div');
+    var h2 = document.createElement('h2');
+    h2.innerHTML = 'QUALTRICS injected';
 
 
-  iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290');
-  iframe.setAttribute('min-width', '300px');
-  iframe.setAttribute('width', '100%');
-  iframe.setAttribute('height', '800px');
+    iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290');
+    iframe.setAttribute('min-width', '300px');
+    iframe.setAttribute('width', '100%');
+    iframe.setAttribute('height', '800px');
 
-  container.appendChild(h2);
-  container.appendChild(iframe);
-  section.appendChild(container);
-  console.log('QUALTRICS injected - Guardians test Qualtrics form')
+    container.appendChild(h2);
+    container.appendChild(iframe);
+    section.appendChild(container);
+    console.log('QUALTRICS injected - Guardians test Qualtrics form')
+  }
   /* INSERT QUALTRICS IFRAME */
 
 
