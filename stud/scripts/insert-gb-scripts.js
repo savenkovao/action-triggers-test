@@ -17,7 +17,7 @@
   /* INSERT DETECTOR, CONFIG, GLASSVOX */
 
   /* INSERT QUALTRICS IFRAME */
-  if(localStorage.getItem('qualtrics_onload')) {
+  // if(localStorage.getItem('qualtrics_onload')) {
     var section = document.getElementsByTagName('section')[0];
     var iframe = document.createElement('iframe');
     var container = document.createElement('div');
@@ -35,7 +35,7 @@
     container.appendChild(iframe);
     section.appendChild(container);
     console.log('QUALTRICS injected - Guardians test Qualtrics form')
-  }
+  // }
   /* INSERT QUALTRICS IFRAME */
 
 
