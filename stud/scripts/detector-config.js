@@ -45,5 +45,6 @@ _cls_config.vocObjectMap = {
 };
 _cls_config.initDetectorOnInteractive = true;
 _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
-_cls_config.reportURI = "https://feature-branch-report.glassboxrnd.com/feature-vos-qu/eiwfopcb/reporting/11bc79ea-d571-b9ba-a8c0-b1e1f320b1a8/cls_report"; // CHANGE
+_cls_config.reportURI = "https://feature-branch-report.glassboxrnd.com/feature-vos-qu/eiwfopcb/reporting/72ac168b-8b95-b22c-0039-a48e8b268ca8/cls_report"; // pre-release app
+// _cls_config.reportURI = "https://feature-branch-report.glassboxrnd.com/feature-vos-qu/eiwfopcb/reporting/11bc79ea-d571-b9ba-a8c0-b1e1f320b1a8/cls_report"; // strudprofkom
 // _cls_config.reportURI = "https://dev-7.0.0-report.glassboxrnd.com/f3lx7s0z/reporting/3009c3ac-51e9-21ab-7756-eef66586a0c6/cls_report"; // CHANGE
