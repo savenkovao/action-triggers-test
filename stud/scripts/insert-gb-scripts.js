@@ -45,9 +45,14 @@
         ['SUBMITTED SURVEY', 'IGNORED SURVEY', 'CLOSED SURVEY'].forEach((name, i) => {
             let button = document.createElement('button');
             button.innerHTML = name;
-            button.classList = ['btn alert-info', 'btn alert-warning', 'btn alert-danger'][i];
+            let modeClass = ['alert-info', 'alert-warning', 'alert-danger'][i];
+            button.classList = 'btn ' + modeClass;
+
             button.addEventListener('click', () => {
-                alert(name + ' BUTTON IS CLICKED! NOW DO THE ACTION');
+                let tagline = document.createElement('div');
+                tagline.classList('alert voc-session-mode ' + modeClass);
+                tagline.innerHTML(name);
+                container.appendChild(tagline);
             });
 
             container.appendChild(button);
