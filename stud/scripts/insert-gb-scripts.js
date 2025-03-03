@@ -42,10 +42,10 @@
     function insertButtons() {
         let container = document.createElement('div');
 
-        ['SUBMITTED SURVEY', 'IGNORED SURVEY', 'CLOSED SURVEY'].forEach((name, i) => {
+        ['RESPONDED SURVEY', 'IGNORED SURVEY'].forEach((name, i) => {
             let button = document.createElement('button');
             button.innerHTML = name;
-            let modeClass = ['alert-info', 'alert-warning', 'alert-danger'][i];
+            let modeClass = ['alert-info', 'alert-warning'][i];
             button.classList = 'btn ' + modeClass;
 
             button.addEventListener('click', () => {
