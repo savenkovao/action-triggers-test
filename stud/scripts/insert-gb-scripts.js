@@ -50,8 +50,8 @@
 
             button.addEventListener('click', () => {
                 let tagline = document.createElement('div');
-                tagline.classList('alert voc-session-mode ' + modeClass);
-                tagline.innerHTML(name);
+                tagline.classList ='alert voc-session-mode ' + modeClass;
+                tagline.innerHTML = name;
                 container.appendChild(tagline);
             });
 
