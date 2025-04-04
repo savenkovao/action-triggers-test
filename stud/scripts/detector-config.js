@@ -24,7 +24,7 @@ _cls_config = Object.assign({}, _cls_config, {
   recordAjaxCallsAnyway: true,
   iframesAutoInject: true,
   ajaxTimeoutForResourceData: 0,
-  reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/d09b7249-e8b5-76c8-c8f7-c906a663701b/cls_report"
+  reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/5b73ac98-b904-cb68-df20-5d8bdbae97a3/cls_report"
 })
 
 // _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
