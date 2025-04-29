@@ -24,7 +24,8 @@ _cls_config = Object.assign({}, _cls_config, {
   recordAjaxCallsAnyway: true,
   iframesAutoInject: true,
   ajaxTimeoutForResourceData: 0,
-  reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/5b73ac98-b904-cb68-df20-5d8bdbae97a3/cls_report"
+  reportURI: "https://feature-branch-report.glassboxrnd.com/feature-10-100-voc/rxmtg4eq/reporting/39ff2edb-fc61-8878-5af3-9be80aeb25d3/cls_report"
+  // reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/5b73ac98-b904-cb68-df20-5d8bdbae97a3/cls_report"
 })
 
 // _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
