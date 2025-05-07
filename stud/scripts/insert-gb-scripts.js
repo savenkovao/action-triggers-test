@@ -19,7 +19,8 @@
     /* INSERT DETECTOR, CONFIG, GLASSVOX */
 
     /* INSERT QUALTRICS IFRAME */
-    if (true) {
+    const isQualtricsEnabled = Boolean(localStorage.getItem('qualtricsEnabled'));
+    if (isQualtricsEnabled === 'true') {
         var section = document.getElementsByTagName('section')[0];
         var iframe = document.createElement('iframe');
         var container = document.createElement('div');
