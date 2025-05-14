@@ -24,7 +24,7 @@ _cls_config = Object.assign({}, _cls_config, {
   iframesAutoInject: true,
   ajaxTimeoutForResourceData: 0,
   reportUseWorker: false,
-  detectorPath: '/action-triggers-test/stud/scripts/detector-libs/',
+  // detectorPath: '/action-triggers-test/stud/scripts/detector-libs/',
   // reportURI: "https://feature-branch-report.glassboxrnd.com/feature-10-100-voc/f9md2cws/reporting/52fe18bf-f443-4175-5af8-87b8d3538ad2/cls_report"
   reportURI: "https://report.dev-mt-eks.glassboxrnd.com/chah329d/reporting/441f1983-eb28-f60f-15c0-b11e34605daa/cls_report"
 })
