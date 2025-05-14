@@ -25,8 +25,8 @@ _cls_config = Object.assign({}, _cls_config, {
   ajaxTimeoutForResourceData: 0,
   reportUseWorker: false,
   detectorPath: '/action-triggers-test/stud/scripts/detector-libs/',
-  reportURI: "https://feature-branch-report.glassboxrnd.com/feature-10-100-voc/f9md2cws/reporting/52fe18bf-f443-4175-5af8-87b8d3538ad2/cls_report"
-  // reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/5b73ac98-b904-cb68-df20-5d8bdbae97a3/cls_report"
+  // reportURI: "https://feature-branch-report.glassboxrnd.com/feature-10-100-voc/f9md2cws/reporting/52fe18bf-f443-4175-5af8-87b8d3538ad2/cls_report"
+  reportURI: "https://report.dev-mt-eks.glassboxrnd.com/chah329d/reporting/441f1983-eb28-f60f-15c0-b11e34605daa/cls_report"
 })
 
 // _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
