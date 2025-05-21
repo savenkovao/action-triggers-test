@@ -1,32 +1,83 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Form Reset Example</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 2em;
+            }
 
+            form {
+                max-width: 400px;
+            }
 
+            label {
+                display: block;
+                margin-top: 1em;
+            }
 
-</head>
-<body>
+            input, select, textarea {
+                width: 100%;
+                padding: 0.5em;
+                margin-top: 0.2em;
+            }
 
-<p>When you reset the form, a function is triggered which alerts some text.</p>
+            .buttons {
+                margin-top: 1.5em;
+            }
 
-<form onreset="myFunction()">
-    Enter name: <input type="text">
-    <input type="reset">
-</form>
+            button {
+                padding: 0.5em 1em;
+            }
+        </style>
+    </head>
 
-<script>
-  function myFunction() {
-    alert("The form was reset");
-  }
-</script>
+    <body>
+        <h2>Form Reset Example</h2>
 
-<h2>Guardians test form</h2>
-<iframe src="https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290" frameborder="0" height="800px"
-        width="600px"></iframe>
-<p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores exercitationem explicabo inventore molestiae
-    possimus quisquam quo repudiandae sapiente sint, suscipit unde ut! Architecto consectetur doloribus, eos iusto omnis
-    quae sed?
-</p>
-</body>
+        <form id="exampleForm" onreset="onReset()" onsubmit="onSubmit()">
+            <label>
+                Name:
+                <input type="text" name="name" value="John Doe" required>
+            </label>
+
+            <label>
+                Email:
+                <input type="email" name="email" value="john@example.com">
+            </label>
+
+            <label>
+                Gender:
+                <select name="gender">
+                    <option value="">--Select--</option>
+                    <option value="male" selected>Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </label>
+
+            <label>
+                Comments:
+                <textarea name="comments">This is a sample comment.</textarea>
+            </label>
+
+            <div class="buttons">
+                <button type="submit">Submit</button>
+                <button type="reset">Reset Form</button>
+            </div>
+        </form>
+
+        <script>
+            function onReset() {
+                console.warn("The form was reset");
+            }
+
+            function onSubmit() {
+                console.warn("The form was submitted");
+            }
+        </script>
+
+    </body>
 </html>
+
