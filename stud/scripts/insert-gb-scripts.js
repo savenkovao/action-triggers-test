@@ -20,7 +20,7 @@
 
     /* INSERT QUALTRICS IFRAME */
     const isQualtricsEnabled = Boolean(localStorage.getItem('qualtricsEnabled'));
-    if (true) {
+    if (isQualtricsEnabled) {
         var section = document.getElementsByTagName('section')[0];
         var iframe = document.createElement('iframe');
         var container = document.createElement('div');
