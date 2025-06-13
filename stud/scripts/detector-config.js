@@ -24,7 +24,7 @@ _cls_config = Object.assign({}, _cls_config, {
   iframesAutoInject: true,
   ajaxTimeoutForResourceData: 0,
   reportUseWorker: false,
-  // detectorPath: '/action-triggers-test/stud/scripts/detector-libs/',
+  ...localStorage.getItem('localLibs') && { detectorPath: '/action-triggers-test/stud/scripts/detector-libs/' },
   // reportURI: "https://feature-branch-report.glassboxrnd.com/feature-voc-k-space/yi5lrhoi/reporting/d0e4d259-6bd9-24bf-2145-6423e3de59df/cls_report"
   reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/d09b7249-e8b5-76c8-c8f7-c906a663701b/cls_report"
 })
