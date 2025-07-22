@@ -25,7 +25,7 @@ _cls_config = Object.assign({}, _cls_config, {
   ajaxTimeoutForResourceData: 0,
   reportUseWorker: false,
   // ...localStorage.getItem('localLibs') && { detectorPath: '/action-triggers-test/stud/scripts/detector-libs/' },
-  // detectorPath: '/action-triggers-test/stud/scripts/detector-libs/',
+  detectorPath: '/action-triggers-test/stud/scripts/detector-libs/',
   reportURI: "https://feature-branch-report.glassboxrnd.com/feature-voc-mobile-mvp/i6kj8hip/reporting/5a21ea13-5f37-b901-59c0-6b5143bd3bcb/cls_report"
   // reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/d09b7249-e8b5-76c8-c8f7-c906a663701b/cls_report"
 })
