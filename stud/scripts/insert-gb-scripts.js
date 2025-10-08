@@ -9,12 +9,12 @@
 
         // ...localStorage.getItem('localLibs') ?
         //     [
-        //         '/action-triggers-test/stud/scripts/detector-libs/detector-bootstrap.min.js',
-        //         '/action-triggers-test/stud/scripts/detector-libs/glassvox.min.js'
+                '/action-triggers-test/stud/scripts/detector-libs/7.2.222/detector-bootstrap.min.js',
+                '/action-triggers-test/stud/scripts/detector-libs/7.2.222/glassvox.min.js'
             // ]
             // : [
-                'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',
-                'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/glassvox.min.js'
+            //     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',
+            //     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/glassvox.min.js'
             // ]
 
     ].forEach((src, i) => {
