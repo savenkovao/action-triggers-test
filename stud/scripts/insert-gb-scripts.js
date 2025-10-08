@@ -9,8 +9,8 @@
 
         // ...localStorage.getItem('localLibs') ?
         //     [
-                '/action-triggers-test/stud/scripts/detector-libs/7.2.222/detector-bootstrap.min.js',
-                '/action-triggers-test/stud/scripts/detector-libs/7.2.222/glassvox.min.js'
+                '/action-triggers-test/stud/scripts/detector-libs/7.2.216/detector-bootstrap.min.js',
+                '/action-triggers-test/stud/scripts/detector-libs/7.2.216/glassvox.min.js'
             // ]
             // : [
             //     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',
