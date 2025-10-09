@@ -1,6 +1,14 @@
 'use strict';
 
 (function () {
+    /* TODO:
+    *   1. Add storage clear buttons localStorage.clear()
+    *   2. Add detector libs version name input
+    *   3. Add separate instance for Qualtrics/Alerts/etc
+    *
+    * */
+
+
     /* INSERT DETECTOR, CONFIG, GLASSVOX */
 
 
