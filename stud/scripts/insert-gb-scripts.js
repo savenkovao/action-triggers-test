@@ -8,8 +8,8 @@
         '/action-triggers-test/stud/scripts/detector-config.js',
         // ...localStorage.getItem('localLibs') ?
         //     [
-                '/action-triggers-test/stud/scripts/detector-libs/7.2.224/detector-bootstrap.min.js',
-                '/action-triggers-test/stud/scripts/detector-libs/7.2.224/glassvox.min.js'
+                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/detector-bootstrap.min.js',
+                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/glassvox.min.js'
             // ]
             // : [
             //     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',
