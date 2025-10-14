@@ -8,60 +8,128 @@
     *
     * */
 
-
     /*_***************************************_GB_SCRIPTS_***************************************_*/
+    insertDetectorScripts();
+    insertQualtricsIframe();
+    insertButtons();
+    addCacheClearControls();
+
     /* INSERT DETECTOR, CONFIG, GLASSVOX */
-
-
-    [
-        '/action-triggers-test/stud/scripts/detector-config.js',
-        // ...localStorage.getItem('localLibs') ?
-        //     [
-                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/detector-bootstrap.min.js',
-                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/glassvox.min.js'
+    function insertDetectorScripts() {
+        [
+            '/action-triggers-test/stud/scripts/detector-config.js',
+            // ...localStorage.getItem('localLibs') ?
+            //     [
+            'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/detector-bootstrap.min.js',
+            'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/glassvox.min.js'
             // ]
             // : [
             //     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',
             //     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/glassvox.min.js'
             // ]
 
-    ].forEach((src, i) => {
-        let script = document.createElement('script');
-        script.setAttribute('src', src);
-        i > 0 && script.setAttribute('async', '');
-        script.setAttribute('type', 'text/javascript');
-        document.head.appendChild(script);
-    });
-
-    /* INSERT DETECTOR, CONFIG, GLASSVOX */
-
-    /* INSERT QUALTRICS IFRAME */
-    const isQualtricsEnabled = Boolean(localStorage.getItem('qualtricsEnabled'));
-    // if (true) {
-    if (isQualtricsEnabled) {
-        var section = document.getElementsByTagName('section')[0];
-        var iframe = document.createElement('iframe');
-        var container = document.createElement('div');
-        var h2 = document.createElement('h2');
-        h2.innerHTML = 'QUALTRICS injected';
-
-
-        iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290'); // OLD from may
-        // iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_7PY5RmrV2WW3MPk'); // VirginAustralia test
-        iframe.setAttribute('min-width', '300px');
-        iframe.setAttribute('width', '100%');
-        iframe.setAttribute('height', '800px');
-
-        container.appendChild(h2);
-        container.appendChild(iframe);
-        section.appendChild(container);
-        console.log('QUALTRICS injected - Guardians test Qualtrics form');
+        ].forEach((src, i) => {
+            let script = document.createElement('script');
+            script.setAttribute('src', src);
+            i > 0 && script.setAttribute('async', '');
+            script.setAttribute('type', 'text/javascript');
+            document.head.appendChild(script);
+        });
     }
+
     /* INSERT QUALTRICS IFRAME */
+    function insertQualtricsIframe() {
+        // TODO add handle toggle
+        const isQualtricsEnabled = Boolean(localStorage.getItem('qualtricsEnabled'));
+
+        if (isQualtricsEnabled) {
+            let section = document.getElementsByTagName('section')[0];
+            let iframe = document.createElement('iframe');
+            let container = document.createElement('div');
+            let h2 = document.createElement('h2');
+            h2.innerHTML = 'QUALTRICS injected';
+
+
+            iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290'); // OLD from may
+            // iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_7PY5RmrV2WW3MPk'); // VirginAustralia test
+            iframe.setAttribute('min-width', '300px');
+            iframe.setAttribute('width', '100%');
+            iframe.setAttribute('height', '800px');
+
+            container.appendChild(h2);
+            container.appendChild(iframe);
+            section.appendChild(container);
+            console.log('QUALTRICS injected - Guardians test Qualtrics form');
+        }
+    }
+
+    /* CLEAR CACHE CONTROLS */
+    function addCacheClearControls() {
+        let container = document.createElement('div');
+        container.setAttribute('id', 'gb-clear-cache');
+
+        let dropdown = document.createElement('select');
+        dropdown.classList.add('input-lg');
+        dropdown.setAttribute('id', 'gb-clear-cache-select');
+        dropdown.setAttribute('placeholder', 'Select cache to clear');
+        dropdown.innerHTML =
+            `<option value="" disabled selected>Select your option</option>`
+            + [
+                'clear_local_storage',
+                'clear_session_storage',
+                'clear_cookies',
+                'clear_all'
+            ].map((i) => `<option value="${i}">${i}</option>`).join('\n');
+
+
+        let button = document.createElement('button');
+        button.innerHTML = 'Clear storage';
+        dropdown.setAttribute('id', 'gb-clear-cache-btn');
+        button.classList = 'btn btn-large btn-danger';
+
+        button.addEventListener('click', () => {
+            const value = dropdown.value;
+
+            switch (value) {
+                case 'clear_local_storage': {
+                    localStorage.clear();
+                    break;
+                }
+                case 'clear_session_storage': {
+                    sessionStorage.clear();
+                    break;
+                }
+                case 'clear_cookies': {
+                    deleteAllCookies();
+                    break;
+                }
+                case 'clear_all': {
+                    localStorage.clear();
+                    sessionStorage.clear();
+                    deleteAllCookies();
+                    break;
+                }
+            }
+            console.log(value);
+        });
+
+        container.appendChild(dropdown);
+        container.appendChild(button);
+        document.getElementById('head').prepend(container);
+
+        function deleteAllCookies() {
+            document.cookie
+                .split(';')
+                .forEach(c => {
+                    document.cookie = c.replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+                });
+        }
+    }
 
     /* INSERT BUTTONS */
     function insertButtons() {
         let container = document.createElement('div');
+        container.setAttribute('id', 'gb-action-buttons');
 
         ['RESPONDED SURVEY', 'IGNORED SURVEY'].forEach((name, i) => {
             let button = document.createElement('button');
@@ -81,9 +149,6 @@
 
         document.getElementById('head').prepend(container);
     }
-
-    insertButtons();
-    /* INSERT BUTTONS */
 
     /*_***************************************_GB_SCRIPTS_***************************************_*/
 
@@ -281,5 +346,6 @@
             headerLogoMobile.classList.remove('header-logo-min');
         }
     }
+
     /* OLD website functionality scripts */
 }());
