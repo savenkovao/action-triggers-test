@@ -5,10 +5,12 @@
     *   1. Add storage clear buttons localStorage.clear()
     *   2. Add detector libs version name input
     *   3. Add separate instance for Qualtrics/Alerts/etc
+    *   3. Add Qualtrics toggle
     *
     * */
 
     /*_***************************************_GB_SCRIPTS_***************************************_*/
+    addGBControlsContainer();
     insertDetectorScripts();
     insertQualtricsIframe();
     insertButtons();
@@ -16,6 +18,13 @@
 
     /* INSERT DETECTOR, CONFIG, GLASSVOX */
     function insertDetectorScripts() {
+        let container = document.createElement('div');
+        container.setAttribute('id', 'gb-detector-versions');
+        let title = document.createElement('h4');
+        title.innerHTML = 'Libs versions';
+        container.appendChild(title);
+        document.getElementById('gb-control-panel').append(container);
+
         [
             '/action-triggers-test/stud/scripts/detector-config.js',
             // ...localStorage.getItem('localLibs') ?
@@ -37,8 +46,23 @@
         });
     }
 
+    /* INSERT GB CONTROLS CONTAINER */
+    function addGBControlsContainer() {
+        let container = document.createElement('div');
+        container.setAttribute('id', 'gb-control-panel');
+        container.classList.add('well');
+        document.getElementById('head').prepend(container);
+    }
+
     /* INSERT QUALTRICS IFRAME */
     function insertQualtricsIframe() {
+        let container = document.createElement('div');
+        container.setAttribute('id', 'gb-qualtrics-toggle');
+        let title = document.createElement('h4');
+        title.innerHTML = 'Qualtrics iframe toggle';
+        container.appendChild(title);
+        document.getElementById('gb-control-panel').append(container);
+
         // TODO add handle toggle
         const isQualtricsEnabled = Boolean(localStorage.getItem('qualtricsEnabled'));
 
@@ -67,9 +91,11 @@
     function addCacheClearControls() {
         let container = document.createElement('div');
         container.setAttribute('id', 'gb-clear-cache');
+        let title = document.createElement('h4');
+        title.innerHTML = 'Clear cache';
 
         let dropdown = document.createElement('select');
-        dropdown.classList.add('input-lg');
+        dropdown.classList.add('input-sm');
         dropdown.setAttribute('id', 'gb-clear-cache-select');
         dropdown.setAttribute('placeholder', 'Select cache to clear');
         dropdown.innerHTML =
@@ -81,11 +107,10 @@
                 'clear_all'
             ].map((i) => `<option value="${i}">${i}</option>`).join('\n');
 
-
         let button = document.createElement('button');
         button.innerHTML = 'Clear storage';
         dropdown.setAttribute('id', 'gb-clear-cache-btn');
-        button.classList = 'btn btn-large btn-danger';
+        button.classList = 'btn btn-sm btn-danger';
 
         button.addEventListener('click', () => {
             const value = dropdown.value;
@@ -113,9 +138,10 @@
             console.log(value);
         });
 
+        container.appendChild(title);
         container.appendChild(dropdown);
         container.appendChild(button);
-        document.getElementById('head').prepend(container);
+        document.getElementById('gb-control-panel').append(container);
 
         function deleteAllCookies() {
             document.cookie
@@ -130,6 +156,9 @@
     function insertButtons() {
         let container = document.createElement('div');
         container.setAttribute('id', 'gb-action-buttons');
+        let title = document.createElement('h4');
+        title.innerHTML = 'Action Buttons';
+        container.appendChild(title);
 
         ['RESPONDED SURVEY', 'IGNORED SURVEY'].forEach((name, i) => {
             let button = document.createElement('button');
@@ -147,7 +176,7 @@
             container.appendChild(button);
         });
 
-        document.getElementById('head').prepend(container);
+        document.getElementById('gb-control-panel').append(container);
     }
 
     /*_***************************************_GB_SCRIPTS_***************************************_*/
