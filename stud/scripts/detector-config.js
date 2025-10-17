@@ -31,8 +31,10 @@ _cls_config = Object.assign({}, _cls_config, {
   // reportURI: "https://feature-branch-report.glassboxrnd.com/feature-voc-mobile-7/ub4oxcej/reporting/4c8cc581-1f4f-6e88-9aa6-c5eaad50c06e/cls_report"
   // reportURI: "https://feature-branch-report.glassboxrnd.com/feature-voc-mobile-7/ub4oxcej/reporting/eec8034b-0465-2455-f85a-899266c646aa/cls_report"
   // reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/d09b7249-e8b5-76c8-c8f7-c906a663701b/cls_report"
-  reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report"
-})
+  reportURI: localStorage.getItem('reportURI')
+      ? localStorage.getItem('reportURI')
+      : "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report"
+});
 
 // _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
 // reportURI = "https://feature-branch-report.glassboxrnd.com/feature-voc-publisher/0ijnbzfw/reporting/8757114c-07fd-3ca7-7f43-9a3340716709/cls_report"; // pre-release app
