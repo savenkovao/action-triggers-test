@@ -13,8 +13,8 @@
     addGBControlsContainer();
     insertDetectorScripts();
     insertQualtricsIframe();
-    insertButtons();
     addCacheClearControls();
+    insertButtons();
 
     /* INSERT DETECTOR, CONFIG, GLASSVOX */
     function insertDetectorScripts() {
@@ -56,15 +56,35 @@
 
     /* INSERT QUALTRICS IFRAME */
     function insertQualtricsIframe() {
+        const isQualtricsEnabled = localStorage.getItem('qualtricsEnabled') === 'true';
+
         let container = document.createElement('div');
         container.setAttribute('id', 'gb-qualtrics-toggle');
+
         let title = document.createElement('h4');
         title.innerHTML = 'Qualtrics iframe toggle';
         container.appendChild(title);
         document.getElementById('gb-control-panel').append(container);
 
-        // TODO add handle toggle
-        const isQualtricsEnabled = Boolean(localStorage.getItem('qualtricsEnabled'));
+        let dropdown = document.createElement('select');
+        dropdown.classList.add('input-sm');
+        dropdown.setAttribute('id', 'gb-qualtrics-toggle-select');
+        dropdown.setAttribute('placeholder', 'Show Qualtrics iframe');
+        dropdown.innerHTML =
+            `<option value="" disabled selected>Select your option</option>`
+            + [
+                'true',
+                'false'
+            ].map((i) => `<option value="${i}">${i}</option>`).join('\n');
+
+        console.log({ isQualtricsEnabled });
+        dropdown.value = isQualtricsEnabled.toString();
+
+        dropdown.addEventListener('change', e => {
+            localStorage.setItem('qualtricsEnabled', `${e.target.value === 'true'}`);
+        });
+
+        container.appendChild(dropdown);
 
         if (isQualtricsEnabled) {
             let section = document.getElementsByTagName('section')[0];
