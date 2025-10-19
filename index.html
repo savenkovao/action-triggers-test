@@ -1,29 +1,42 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-
-
+    <title>Guardians test site</title>
+    <link rel="stylesheet" href="src-main/bootstrap.css?ver1.04">
+    <script src="src-main/insert-gb-scripts.js" type="module"></script>
+    <script type="module">
+        import { initGbScripts } from '/src-main/insert-gb-scripts.js';
+        initGbScripts();
+    </script>
 </head>
 <body>
-<div class="container">
-    <ul>
-        <li>
-            <a href="./drag-drop.html">./drag-drop.html</a>
-        </li>
-        <li>
-            <a href="./reset-form.html">./reset-form.html</a>
-        </li>
-        <li>
-            <a href="./click.html">./click.html</a>
-        </li>
-        <li>
-            <a href="./qualtrics-test.html">./qualtrics-test.html</a>
-        </li>
-        <li>
-            <a href="stud">Stud site</a>
-        </li>
-    </ul>
-</div>
+<section id="head">
+    <div class="container">
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> Recording is not started at this page. <br>
+            Page is for safe recording configuration setup.
+        </div>
+
+        <h2>Pages:</h2>
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a target="_blank" href="./drag-drop.html">./drag-drop.html</a>
+            </li>
+            <li>
+                <a target="_blank" href="./reset-form.html">./reset-form.html</a>
+            </li>
+            <li>
+                <a target="_blank" href="./click.html">./click.html</a>
+            </li>
+            <li>
+                <a target="_blank" href="./qualtrics-test.html">./qualtrics-test.html</a>
+            </li>
+            <li>
+                <a target="_blank" href="stud">Stud site</a>
+            </li>
+        </ul>
+    </div>
+</section>
 </body>
 </html>
 
