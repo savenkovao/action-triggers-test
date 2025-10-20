@@ -5,8 +5,11 @@ export function initGbScripts() {
     /* TODO:
     *   1. Add storage clear buttons localStorage.clear() +
     *   2. Add detector libs version name input +
-    *   3. Add separate instance for Qualtrics/Alerts/etc
     *   3. Add Qualtrics toggle +
+    *   4. Add separate instance for Qualtrics/Alerts/etc
+    *   - Random testing
+    *   - Qualtrics regression
+    *   - Manual regression for mobile devices (static)
     *
     * */
 
