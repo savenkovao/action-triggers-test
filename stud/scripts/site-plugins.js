@@ -80,9 +80,9 @@ import { initGbScripts } from '/src-main/insert-gb-scripts.js';
         function setFooterText() {
             var date = new Date();
             if (currentScreenWidth > 768) {
-                networksLink.innerHTML = '© 2000 – ' + date.getFullYear() + ' "Профком студентов ОГАСА"';
+                networksLink.innerHTML = '© 2000 – ' + date.getFullYear() + ' "Profkom of students OSACEA"';
             } else {
-                networksLink.innerHTML = '© 2000 – ' + date.getFullYear() + ' "ППОС ОГАСА"';
+                networksLink.innerHTML = '© 2000 – ' + date.getFullYear() + ' "ППОС OSACEA"';
             }
         }
 
