@@ -1,29 +1,48 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <title>Guardians test site</title>
+    <link rel="stylesheet" href="src-main/bootstrap.css?ver1.04">
+    <script src="src-main/insert-gb-scripts.js" type="module"></script>
+    <script type="module">
+        import { GbDetectorTestTools } from '/src-main/insert-gb-scripts.js';
 
-
-
+        new GbDetectorTestTools();
+    </script>
 </head>
 <body>
+<section id="head">
+    <div class="container">
+        <div class="alert alert-warning">
+            <strong>Warning!</strong> Recording is not started at this page. <br>
+            Page is for safe recording configuration setup.
+        </div>
 
-<ul>
-    <li>
-        <a href="./drag-drop.html">./drag-drop.html</a>
-    </li>
-    <li>
-        <a href="./reset-form.html">./reset-form.html</a>
-    </li>
-    <li>
-        <a href="./click.html">./click.html</a>
-    </li>
-    <li>
-        <a href="./qualtrics-test.html">./qualtrics-test.html</a>
-    </li>
-    <li>
-        <a href="stud">Stud site</a>
-    </li>
-</ul>
+        <h2>Pages</h2>
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <a href="stud">Stud site</a>
+            </li>
+            <li>
+                <a href="./drag-drop.html">./drag-drop.html</a>
+            </li>
+            <li>
+                <a href="./reset-form.html">./reset-form.html</a>
+            </li>
+            <li>
+                <a href="./click.html">./click.html</a>
+            </li>
+            <li>
+                <a href="./qualtrics-test.html">./qualtrics-test.html</a>
+            </li>
+        </ul>
+
+        <h2>Close session</h2>
+        <pre>http://nodeports.dev-mt-eks.glassboxrnd.com:32660/api/sessions/close_for_app/126447
+http://feature-voc-mobile-mvp.glassboxrnd.com:30981/api/sessions/close/a65240e05e6d11f09ef21eaa13b3d747</pre>
+
+    </div>
+</section>
 </body>
 </html>
 
