@@ -1,18 +1,6 @@
 'use strict';
 
-// (function () {
 export function initGbScripts() {
-    /* TODO:
-    *   1. Add storage clear buttons localStorage.clear() +
-    *   2. Add detector libs version name input +
-    *   3. Add Qualtrics toggle +
-    *   4. Add separate instance for Qualtrics/Alerts/etc
-    *   - Random testing
-    *   - Qualtrics regression
-    *   - Manual regression for mobile devices (static)
-    *
-    * */
-
     /*_***************************************_GB_SCRIPTS_***************************************_*/
     addGBControlsContainer();
     addDetectorConfig();
@@ -228,13 +216,12 @@ export function initGbScripts() {
         dropdown.setAttribute('id', 'gb-clear-cache-select');
         dropdown.setAttribute('placeholder', 'Select cache to clear');
         dropdown.innerHTML =
-            `<option value="" disabled selected>Select your option</option>`
-            + [
+            [
                 'clear_local_storage',
                 'clear_session_storage',
                 'clear_cookies',
                 'clear_all'
-            ].map((i) => `<option value="${i}">${i}</option>`).join('\n');
+            ].map((i) => `<option ${i === 'clear_all' ? 'selected' : ''} value="${i}">${i}</option>`).join('\n');
 
         let button = document.createElement('button');
         button.innerHTML = 'Clear storage';
@@ -243,6 +230,8 @@ export function initGbScripts() {
 
         button.addEventListener('click', () => {
             container.querySelectorAll('.alert').forEach(i => i.remove());
+            const gbDetectorPath = localStorage.getItem('gbDetectorPath');
+            const gbReportURI = localStorage.getItem('gbReportURI');
 
             const value = dropdown.value;
 
@@ -266,6 +255,9 @@ export function initGbScripts() {
                     break;
                 }
             }
+
+            gbDetectorPath && localStorage.setItem('gbDetectorPath', gbDetectorPath);
+            gbReportURI && localStorage.setItem('gbReportURI', gbReportURI);
 
             value && container.appendChild(
                 createTagline(`${value} cache is cleared`, 'warning')
@@ -323,7 +315,7 @@ export function initGbScripts() {
             let button = document.createElement('button');
             button.innerHTML = name;
             let modeClass = ['info', 'warning'][i];
-            button.classList = 'btn ' + `alert-${ modeClass }`;
+            button.classList = 'btn ' + `alert-${modeClass}`;
 
             button.addEventListener('click', () => {
                 container.append(createTagline(name, modeClass));
@@ -342,6 +334,6 @@ export function initGbScripts() {
 
         return tagline;
     }
-}
+
     /*_***************************************_GB_SCRIPTS_***************************************_*/
-// }());
+}
