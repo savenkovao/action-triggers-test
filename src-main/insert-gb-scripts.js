@@ -1,6 +1,42 @@
 'use strict';
 
 export class GbDetectorTestTools {
+    static defaultClsConfig = {
+        interceptAjax: true,
+        valueMaskingMode: 'blacklist',
+        supportRemoteClientConfig: false,
+        clientAttributesEnabled: true,
+        collectVoc: true,
+        reportInitializeWorkerAsBlob: true,
+        observeRightClick: true,
+        waitForSegmentRender: 10,
+        domFormAnalysisReporting: true,
+        domIncludeCSSSelector: true,
+        ajaxRecordStats: 'always',
+        ajaxRecordResponseHeaders: 'always',
+        ajaxRecordRequestHeaders: 'always',
+        ajaxRecordResponseBody: 'always',
+        ajaxRecordRequestBody: 'always',
+        ajaxRecordMetadata: 'always',
+        ajaxCaptureRequestCookie: true,
+        recordAjaxCallsAnyway: true,
+        iframesAutoInject: true,
+        ajaxTimeoutForResourceData: 0,
+        reportUseWorker: false
+    };
+
+    static reportUriList = [
+        'https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report',
+        'https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-qualtrics-regression/cls_report',
+        'https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-regression-testing/cls_report'
+    ];
+
+    static libsList = [
+        'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/',
+        'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/224/',
+        'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/'
+    ];
+
     constructor() {
         this.addMainContainer();
         this.addDetectorConfig();
@@ -54,23 +90,25 @@ export class GbDetectorTestTools {
         document.getElementById('head').prepend(container);
     }
 
-    /* DETECTOR CONFIG */
+    /* ADD DETECTOR CONFIG */
     addDetectorConfig() {
         const container = this.createAndAttachBlockContainer('gb-reporting-url', 'reportURI');
 
-        let reportURI = localStorage.getItem('gbReportURI') || 'https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report';
-        let reportUriInput = document.createElement('input');
+        const reportURI = localStorage.getItem('gbReportURI') || GbDetectorTestTools.reportUriList[0];
+        const reportUriInput = document.createElement('input');
         reportUriInput.setAttribute('id', 'gb-report-uri-input');
-        reportUriInput.setAttribute('placeholder', 'https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report');
+        reportUriInput.setAttribute('placeholder', GbDetectorTestTools.reportUriList[0]);
         reportUriInput.classList.add('form-control');
         reportUriInput.value = reportURI;
 
-        let reportUriInputLabel = document.createElement('label');
-        reportUriInputLabel.innerHTML = '_cls_config.reportURI, e.g.: https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report';
+        const reportUriInputLabel = document.createElement('label');
+        reportUriInputLabel.innerHTML = '_cls_config.reportURI';
         reportUriInputLabel.setAttribute('for', 'gb-report-uri-input');
 
-        container.appendChild(reportUriInputLabel);
-        container.appendChild(reportUriInput);
+        const examplesList = document.createElement('pre');
+        examplesList.innerHTML = GbDetectorTestTools.reportUriList.join('\n');
+
+        container.append(reportUriInputLabel, reportUriInput, examplesList);
 
         reportUriInput.addEventListener('change', (e) => {
             localStorage.setItem('gbReportURI', e.target.value);
@@ -84,50 +122,28 @@ export class GbDetectorTestTools {
             window._cls_config = {};
         }
 
-        window._cls_config = Object.assign({}, window._cls_config, {
-            interceptAjax: true,
-            valueMaskingMode: 'blacklist',
-            supportRemoteClientConfig: false,
-            clientAttributesEnabled: true,
-            collectVoc: true,
-            reportInitializeWorkerAsBlob: true,
-            observeRightClick: true,
-            waitForSegmentRender: 10,
-            domFormAnalysisReporting: true,
-            domIncludeCSSSelector: true,
-            ajaxRecordStats: 'always',
-            ajaxRecordResponseHeaders: 'always',
-            ajaxRecordRequestHeaders: 'always',
-            ajaxRecordResponseBody: 'always',
-            ajaxRecordRequestBody: 'always',
-            ajaxRecordMetadata: 'always',
-            ajaxCaptureRequestCookie: true,
-            recordAjaxCallsAnyway: true,
-            iframesAutoInject: true,
-            ajaxTimeoutForResourceData: 0,
-            reportUseWorker: false,
-            reportURI: reportURI
-        });
-
+        window._cls_config = Object.assign({}, window._cls_config, GbDetectorTestTools.defaultClsConfig, { reportURI });
     }
 
-    /* INSERT DETECTOR, CONFIG, GLASSVOX */
+    /* INSERT DETECTOR, GLASSVOX LIBS */
     insertDetectorScripts() {
-        let container = this.createAndAttachBlockContainer('gb-detector-versions', 'Libs versions');
+        const container = this.createAndAttachBlockContainer('gb-detector-versions', 'Libs versions');
 
-        let detectorPath = localStorage.getItem('gbDetectorPath') || 'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/';
-        let detectorPathInput = document.createElement('input');
+        const detectorPath = localStorage.getItem('gbDetectorPath') || GbDetectorTestTools.libsList[0];
+        const detectorPathInput = document.createElement('input');
         detectorPathInput.setAttribute('id', 'gb-detector-path-input');
         detectorPathInput.classList.add('form-control');
-        detectorPathInput.setAttribute('placeholder', 'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/224/');
+        detectorPathInput.setAttribute('placeholder', GbDetectorTestTools.libsList[0]);
         detectorPathInput.value = detectorPath;
 
-        let detectorPathInputLabel = document.createElement('label');
-        detectorPathInputLabel.innerHTML = 'Detector libs folder path, e.g.: https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/224/';
+        const detectorPathInputLabel = document.createElement('label');
+        detectorPathInputLabel.innerHTML = 'Detector libs folder path';
         detectorPathInputLabel.setAttribute('for', 'gb-detector-path-input');
 
-        container.appendChild(detectorPathInputLabel);
-        container.appendChild(detectorPathInput);
+        const examplesList = document.createElement('pre');
+        examplesList.innerHTML = GbDetectorTestTools.libsList.join('\n');
+
+        container.append(detectorPathInputLabel, detectorPathInput, examplesList);
 
         detectorPathInput.addEventListener('change', (e) => {
             localStorage.setItem('gbDetectorPath', e.target.value);
@@ -233,6 +249,14 @@ export class GbDetectorTestTools {
         dropdown.setAttribute('id', 'gb-clear-cache-btn');
         button.classList = 'btn btn-sm btn-danger';
 
+        const deleteAllCookies = function () {
+            document.cookie
+                .split(';')
+                .forEach(c => {
+                    document.cookie = c.replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+                });
+        };
+
         button.addEventListener('click', () => {
             container.querySelectorAll('.alert').forEach(i => i.remove());
             const gbDetectorPath = localStorage.getItem('gbDetectorPath');
@@ -265,20 +289,11 @@ export class GbDetectorTestTools {
             gbReportURI && localStorage.setItem('gbReportURI', gbReportURI);
 
             value && container.appendChild(
-                this.createTagline(`${value} cache is cleared`, 'warning')
+                this.createTagline(`${value}: cache is cleared`, 'success')
             );
-            console.log(value);
         });
 
         container.append(dropdown, ' ', button);
-
-        function deleteAllCookies() {
-            document.cookie
-                .split(';')
-                .forEach(c => {
-                    document.cookie = c.replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
-                });
-        }
     }
 
     /* RELOAD THE PAGE */
