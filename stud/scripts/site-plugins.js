@@ -1,13 +1,13 @@
 'use strict';
 
-import { GbDetectorTestTools } from '/src-main/insert-gb-scripts.js';
+import { GbDetectorTestTools } from '/action-triggers-test/src-main/insert-gb-scripts.js';
 
 (function () {
 
     // Add GB scripts
     const script = document.createElement('script');
     script.type = 'module';
-    script.src = '/src-main/insert-gb-scripts.js';
+    script.src = '/action-triggers-test/src-main/insert-gb-scripts.js';
     document.head.appendChild(script);
 
     new GbDetectorTestTools();
