@@ -26,9 +26,9 @@ export class GbDetectorTestTools {
     };
 
     static reportUriList = [
+        'https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-regression-testing/cls_report',
         'https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report',
         'https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-qualtrics-regression/cls_report',
-        'https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-regression-testing/cls_report'
     ];
 
     static libsList = [
@@ -37,20 +37,26 @@ export class GbDetectorTestTools {
         'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.224/'
     ];
 
+    static defaultQualtricsSurvey = 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290';
+
+    static excludedPages = [
+        '/action-triggers-test/',
+        '/action-triggers-test/index.html'
+    ];
+
+    static configPage = GbDetectorTestTools.excludedPages[0];
+
     constructor() {
         this.addMainContainer();
         this.addDetectorConfig();
         this.insertDetectorScripts();
         this.insertQualtricsIframe();
         this.addCacheClearControls();
-        this.addPageReloadControl();
+        this.addActionControls();
     }
 
     isRecordedPage() {
-        return ![
-            '/action-triggers-test/',
-            '/action-triggers-test/index.html'
-        ].includes(location.pathname);
+        return !GbDetectorTestTools.excludedPages.includes(location.pathname);
     }
 
     createAndAttachBlockContainer(id, titleStr) {
@@ -130,28 +136,28 @@ export class GbDetectorTestTools {
         const container = this.createAndAttachBlockContainer('gb-detector-versions', 'Libs versions');
 
         const detectorPath = localStorage.getItem('gbDetectorPath') || GbDetectorTestTools.libsList[0];
-        const detectorPathInput = document.createElement('input');
-        detectorPathInput.setAttribute('id', 'gb-detector-path-input');
-        detectorPathInput.classList.add('form-control');
-        detectorPathInput.setAttribute('placeholder', GbDetectorTestTools.libsList[0]);
-        detectorPathInput.value = detectorPath;
+        const qualtricsIframeSrcInput = document.createElement('input');
+        qualtricsIframeSrcInput.setAttribute('id', 'gb-detector-path-input');
+        qualtricsIframeSrcInput.classList.add('form-control');
+        qualtricsIframeSrcInput.setAttribute('placeholder', GbDetectorTestTools.libsList[0]);
+        qualtricsIframeSrcInput.value = detectorPath;
 
-        const detectorPathInputLabel = document.createElement('label');
-        detectorPathInputLabel.innerHTML = 'Detector libs folder path';
-        detectorPathInputLabel.setAttribute('for', 'gb-detector-path-input');
+        const qualtricsIframeSrcInputLabel = document.createElement('label');
+        qualtricsIframeSrcInputLabel.innerHTML = 'Detector libs folder path';
+        qualtricsIframeSrcInputLabel.setAttribute('for', 'gb-detector-path-input');
 
         const examplesList = document.createElement('pre');
         examplesList.innerHTML = GbDetectorTestTools.libsList.join('\n');
 
-        container.append(detectorPathInputLabel, detectorPathInput, examplesList);
+        container.append(qualtricsIframeSrcInputLabel, qualtricsIframeSrcInput, examplesList);
 
-        detectorPathInput.addEventListener('change', (e) => {
+        qualtricsIframeSrcInput.addEventListener('change', (e) => {
             localStorage.setItem('gbDetectorPath', e.target.value);
         });
 
         if (!this.isRecordedPage()) {
             container.appendChild(
-                this.createTagline('Libs are not attached', 'warning')
+                this.createTagline('Libs are not attached at this page', 'warning')
             );
             return;
         }
@@ -160,10 +166,11 @@ export class GbDetectorTestTools {
             `${detectorPath}detector-bootstrap.min.js`,
             `${detectorPath}glassvox.min.js`
         ].forEach((src, i) => {
-            let script = document.createElement('script');
+            const script = document.createElement('script');
             script.setAttribute('src', src);
-            i > 0 && script.setAttribute('async', '');
+            script.setAttribute('async', '');
             script.setAttribute('type', 'text/javascript');
+
             document.head.appendChild(script);
         });
 
@@ -206,7 +213,19 @@ export class GbDetectorTestTools {
             );
         });
 
-        container.append(dropdown);
+        const qualtricsIframeSrc = localStorage.getItem('qualtricsIframeSrc') || GbDetectorTestTools.defaultQualtricsSurvey;
+
+        const qualtricsIframeSrcInput = document.createElement('input');
+        qualtricsIframeSrcInput.setAttribute('id', 'gb-qualtrics-src-input');
+        qualtricsIframeSrcInput.classList.add('form-control');
+        qualtricsIframeSrcInput.setAttribute('placeholder', GbDetectorTestTools.defaultQualtricsSurvey);
+        qualtricsIframeSrcInput.value = qualtricsIframeSrc;
+
+        qualtricsIframeSrcInput.addEventListener('change', e => {
+            localStorage.setItem('qualtricsIframeSrc', `${e.target.value}`);
+        })
+
+        container.append(dropdown, qualtricsIframeSrcInput);
 
         if (isQualtricsEnabled) {
             let section = document.getElementsByTagName('section')[0];
@@ -216,8 +235,7 @@ export class GbDetectorTestTools {
             h2.innerHTML = 'QUALTRICS injected';
 
 
-            iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_eJ8fX5JtTv5M290'); // OLD from may
-            // iframe.setAttribute('src', 'https://glassboxpartner.qualtrics.com/jfe/form/SV_7PY5RmrV2WW3MPk'); // VirginAustralia test
+            iframe.setAttribute('src', qualtricsIframeSrc);
             iframe.setAttribute('min-width', '300px');
             iframe.setAttribute('width', '100%');
             iframe.setAttribute('height', '800px');
@@ -261,6 +279,7 @@ export class GbDetectorTestTools {
             container.querySelectorAll('.alert').forEach(i => i.remove());
             const gbDetectorPath = localStorage.getItem('gbDetectorPath');
             const gbReportURI = localStorage.getItem('gbReportURI');
+            const qualtricsIframeSrc = localStorage.getItem('qualtricsIframeSrc');
 
             const value = dropdown.value;
 
@@ -287,6 +306,7 @@ export class GbDetectorTestTools {
 
             gbDetectorPath && localStorage.setItem('gbDetectorPath', gbDetectorPath);
             gbReportURI && localStorage.setItem('gbReportURI', gbReportURI);
+            qualtricsIframeSrc && localStorage.setItem('qualtricsIframeSrc', qualtricsIframeSrc);
 
             value && container.appendChild(
                 this.createTagline(`${value}: cache is cleared`, 'success')
@@ -296,8 +316,8 @@ export class GbDetectorTestTools {
         container.append(dropdown, ' ', button);
     }
 
-    /* RELOAD THE PAGE */
-    addPageReloadControl() {
+    /* ACTION CONTROLS */
+    addActionControls() {
         let container = this.createAndAttachBlockContainer('gb-page-reload', 'Actions');
 
         let buttonReload = document.createElement('button');
@@ -310,7 +330,7 @@ export class GbDetectorTestTools {
 
         let goSetupPageLink = document.createElement('a');
         goSetupPageLink.innerHTML = 'Go setup page';
-        goSetupPageLink.setAttribute('href', '/action-triggers-test');
+        goSetupPageLink.setAttribute('href', GbDetectorTestTools.configPage);
         goSetupPageLink.classList = 'btn btn-sm btn-info';
 
         container.append(buttonReload, ' ', goSetupPageLink);
