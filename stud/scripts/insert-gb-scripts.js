@@ -16,8 +16,8 @@
         '/action-triggers-test/stud/scripts/detector-config.js',
         // ...localStorage.getItem('localLibs') ?
         //     [
-                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/no-cooldown/detector-bootstrap.min.js',
-                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/no-cooldown/glassvox.min.js'
+                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.226/detector-bootstrap.min.js',
+                'https://savenkovao.github.io/action-triggers-test/stud/scripts/detector-libs/7.2.226/glassvox.min.js'
             // ]
             // : [
             //     'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/detector-bootstrap.min.js',

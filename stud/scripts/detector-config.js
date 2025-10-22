@@ -33,7 +33,7 @@ _cls_config = Object.assign({}, _cls_config, {
   // reportURI: "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/d09b7249-e8b5-76c8-c8f7-c906a663701b/cls_report"
   reportURI: localStorage.getItem('reportURI')
       ? localStorage.getItem('reportURI')
-      : "https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report"
+      : "https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-regression-testing/cls_report"
 });
 
 // _cls_config.detectorPath = 'https://cdn.gbqofs.com/sv/a/';
