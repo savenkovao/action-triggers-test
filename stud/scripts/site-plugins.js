@@ -1,6 +1,6 @@
 'use strict';
 
-import { initGbScripts } from '/src-main/insert-gb-scripts.js';
+import { GbDetectorTestTools } from '/src-main/insert-gb-scripts.js';
 
 (function () {
 
@@ -10,7 +10,7 @@ import { initGbScripts } from '/src-main/insert-gb-scripts.js';
     script.src = '/src-main/insert-gb-scripts.js';
     document.head.appendChild(script);
 
-    initGbScripts();
+    new GbDetectorTestTools();
     // Add GB scripts
 
     /* OLD website functionality scripts */

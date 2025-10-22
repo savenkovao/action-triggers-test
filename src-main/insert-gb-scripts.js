@@ -1,35 +1,68 @@
 'use strict';
 
-export function initGbScripts() {
-    /*_***************************************_GB_SCRIPTS_***************************************_*/
-    addGBControlsContainer();
-    addDetectorConfig();
-    insertDetectorScripts();
-    insertQualtricsIframe();
-    addCacheClearControls();
-    addPageReloadControl();
-    // insertButtons();
+export class GbDetectorTestTools {
+    constructor() {
+        this.addMainContainer();
+        this.addDetectorConfig();
+        this.insertDetectorScripts();
+        this.insertQualtricsIframe();
+        this.addCacheClearControls();
+        this.addPageReloadControl();
+    }
 
-    function isRecordedPage() {
-        return location.pathname !== '/action-triggers-test/';
+    isRecordedPage() {
+        return ![
+            '/action-triggers-test/',
+            '/action-triggers-test/index.html'
+        ].includes(location.pathname);
+    }
+
+    createAndAttachBlockContainer(id, titleStr) {
+        let container = document.createElement('div');
+        container.setAttribute('id', id);
+
+        if (titleStr) {
+            let title = document.createElement('h4');
+            title.innerHTML = titleStr;
+
+            container.appendChild(title);
+        }
+
+        document.getElementById('gb-control-panel').append(container);
+
+        return container;
+    }
+
+    createTagline(htmlString, mode) {
+        let tagline = document.createElement('div');
+        tagline.classList = 'alert voc-session-mode ' + `alert-${mode}`;
+        tagline.innerHTML = htmlString;
+
+        return tagline;
+    }
+
+    /* INSERT GB TOOLS CONTAINER */
+    addMainContainer() {
+        let container = document.createElement('div');
+        container.setAttribute('id', 'gb-control-panel');
+        container.classList = 'well container';
+
+        let title = document.createElement('h3');
+        title.innerHTML = 'GB recording setup panel';
+        container.appendChild(title);
+
+        document.getElementById('head').prepend(container);
     }
 
     /* DETECTOR CONFIG */
-    function addDetectorConfig() {
-        let container = document.createElement('div');
-        container.setAttribute('id', 'gb-reporting-url');
-
-        let title = document.createElement('h4');
-        title.innerHTML = 'reportURI';
-        container.appendChild(title);
-        document.getElementById('gb-control-panel').append(container);
+    addDetectorConfig() {
+        const container = this.createAndAttachBlockContainer('gb-reporting-url', 'reportURI');
 
         let reportURI = localStorage.getItem('gbReportURI') || 'https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report';
-
         let reportUriInput = document.createElement('input');
         reportUriInput.setAttribute('id', 'gb-report-uri-input');
-        reportUriInput.classList.add('form-control');
         reportUriInput.setAttribute('placeholder', 'https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report');
+        reportUriInput.classList.add('form-control');
         reportUriInput.value = reportURI;
 
         let reportUriInputLabel = document.createElement('label');
@@ -43,7 +76,7 @@ export function initGbScripts() {
             localStorage.setItem('gbReportURI', e.target.value);
         });
 
-        if (!isRecordedPage()) {
+        if (!this.isRecordedPage()) {
             return;
         }
 
@@ -79,13 +112,8 @@ export function initGbScripts() {
     }
 
     /* INSERT DETECTOR, CONFIG, GLASSVOX */
-    function insertDetectorScripts() {
-        let container = document.createElement('div');
-        container.setAttribute('id', 'gb-detector-versions');
-
-        let title = document.createElement('h4');
-        title.innerHTML = 'Libs versions';
-        container.appendChild(title);
+    insertDetectorScripts() {
+        let container = this.createAndAttachBlockContainer('gb-detector-versions', 'Libs versions');
 
         let detectorPath = localStorage.getItem('gbDetectorPath') || 'https://gb-qa-detector.s3.us-east-2.amazonaws.com/7.2/';
         let detectorPathInput = document.createElement('input');
@@ -100,16 +128,14 @@ export function initGbScripts() {
 
         container.appendChild(detectorPathInputLabel);
         container.appendChild(detectorPathInput);
-        document.getElementById('gb-control-panel').append(container);
 
         detectorPathInput.addEventListener('change', (e) => {
             localStorage.setItem('gbDetectorPath', e.target.value);
         });
 
-
-        if (!isRecordedPage()) {
+        if (!this.isRecordedPage()) {
             container.appendChild(
-                createTagline('Libs are not attached', 'warning')
+                this.createTagline('Libs are not attached', 'warning')
             );
             return;
         }
@@ -126,7 +152,7 @@ export function initGbScripts() {
         });
 
         container.appendChild(
-            createTagline('Libs are attached <strong id="gb-current-version"></strong>', 'success')
+            this.createTagline('Libs are attached <strong id="gb-current-version"></strong>', 'success')
         );
 
         setTimeout(() => {
@@ -134,28 +160,10 @@ export function initGbScripts() {
         }, 2000);
     }
 
-    /* INSERT GB CONTROLS CONTAINER */
-    function addGBControlsContainer() {
-        let container = document.createElement('div');
-        container.setAttribute('id', 'gb-control-panel');
-        container.classList = 'well container';
-
-        let title = document.createElement('h3');
-        title.innerHTML = 'GB recording setup panel';
-        container.appendChild(title);
-
-        document.getElementById('head').prepend(container);
-    }
 
     /* INSERT QUALTRICS IFRAME */
-    function insertQualtricsIframe() {
-        const isQualtricsEnabled = localStorage.getItem('gbQualtricsEnabled') === 'true';
-
-        let container = document.createElement('div');
-        container.setAttribute('id', 'gb-qualtrics-toggle');
-
-        let title = document.createElement('h4');
-        title.innerHTML = 'Qualtrics iframe toggle';
+    insertQualtricsIframe() {
+        let container = this.createAndAttachBlockContainer('gb-qualtrics-toggle', 'Qualtrics iframe toggle');
 
         let dropdown = document.createElement('select');
         dropdown.classList.add('input-sm');
@@ -168,6 +176,7 @@ export function initGbScripts() {
                 'false'
             ].map((i) => `<option value="${i}">${i}</option>`).join('\n');
 
+        const isQualtricsEnabled = localStorage.getItem('gbQualtricsEnabled') === 'true';
         dropdown.value = isQualtricsEnabled.toString();
 
         dropdown.addEventListener('change', e => {
@@ -177,12 +186,11 @@ export function initGbScripts() {
             localStorage.setItem('gbQualtricsEnabled', `${currValue}`);
 
             container.append(
-                createTagline(`Qualtrics state is: ${currValue}`, currValue ? 'success' : 'warning')
+                this.createTagline(`Qualtrics state is: ${currValue}`, currValue ? 'success' : 'warning')
             );
         });
 
-        container.append(title, dropdown);
-        document.getElementById('gb-control-panel').append(container);
+        container.append(dropdown);
 
         if (isQualtricsEnabled) {
             let section = document.getElementsByTagName('section')[0];
@@ -205,11 +213,8 @@ export function initGbScripts() {
     }
 
     /* CLEAR CACHE CONTROLS */
-    function addCacheClearControls() {
-        let container = document.createElement('div');
-        container.setAttribute('id', 'gb-clear-cache');
-        let title = document.createElement('h4');
-        title.innerHTML = 'Clear cache';
+    addCacheClearControls() {
+        let container = this.createAndAttachBlockContainer('gb-clear-cache', 'Clear cache');
 
         let dropdown = document.createElement('select');
         dropdown.classList.add('input-sm');
@@ -260,13 +265,12 @@ export function initGbScripts() {
             gbReportURI && localStorage.setItem('gbReportURI', gbReportURI);
 
             value && container.appendChild(
-                createTagline(`${value} cache is cleared`, 'warning')
+                this.createTagline(`${value} cache is cleared`, 'warning')
             );
             console.log(value);
         });
 
-        container.append(title, dropdown, ' ', button);
-        document.getElementById('gb-control-panel').append(container);
+        container.append(dropdown, ' ', button);
 
         function deleteAllCookies() {
             document.cookie
@@ -278,13 +282,8 @@ export function initGbScripts() {
     }
 
     /* RELOAD THE PAGE */
-    function addPageReloadControl() {
-        let container = document.createElement('div');
-        container.setAttribute('id', 'gb-page-reload');
-
-        let title = document.createElement('h4');
-        title.innerHTML = 'Actions';
-        container.appendChild(title);
+    addPageReloadControl() {
+        let container = this.createAndAttachBlockContainer('gb-page-reload', 'Actions');
 
         let buttonReload = document.createElement('button');
         buttonReload.innerHTML = 'Reload the page';
@@ -300,40 +299,5 @@ export function initGbScripts() {
         goSetupPageLink.classList = 'btn btn-sm btn-info';
 
         container.append(buttonReload, ' ', goSetupPageLink);
-        document.getElementById('gb-control-panel').append(container);
     }
-
-    /* INSERT BUTTONS */
-    function insertButtons() {
-        let container = document.createElement('div');
-        container.setAttribute('id', 'gb-action-buttons');
-        let title = document.createElement('h4');
-        title.innerHTML = 'Action Buttons';
-        container.append(title);
-
-        ['RESPONDED SURVEY', 'IGNORED SURVEY'].forEach((name, i) => {
-            let button = document.createElement('button');
-            button.innerHTML = name;
-            let modeClass = ['info', 'warning'][i];
-            button.classList = 'btn ' + `alert-${modeClass}`;
-
-            button.addEventListener('click', () => {
-                container.append(createTagline(name, modeClass));
-            });
-
-            container.append(button);
-        });
-
-        document.getElementById('gb-control-panel').append(container);
-    }
-
-    function createTagline(htmlString, mode) {
-        let tagline = document.createElement('div');
-        tagline.classList = 'alert voc-session-mode ' + `alert-${mode}`;
-        tagline.innerHTML = htmlString;
-
-        return tagline;
-    }
-
-    /*_***************************************_GB_SCRIPTS_***************************************_*/
 }
