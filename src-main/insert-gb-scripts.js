@@ -29,6 +29,7 @@ export class GbDetectorTestTools {
         'https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-regression-testing/cls_report',
         'https://report.dev-mt-eks.glassboxrnd.com/f3lx7s0z/reporting/1ba66434-62b3-a15f-d5a7-e1c6e1ce35d2/cls_report',
         'https://report.dev-mt-eks.glassboxrnd.com/xutmbetq/reporting/guardians-voc-qualtrics-regression/cls_report',
+        'https://feature-branch-report.glassboxrnd.com/feature-voc-mobile-mvp/i6kj8hip/reporting/afd5b8a4-a8ee-5316-95f3-c76460d7a994/cls_report',
     ];
 
     static libsList = [
